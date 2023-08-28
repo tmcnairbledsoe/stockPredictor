@@ -136,7 +136,7 @@ model = Sequential([layers.Input((3, 1)),
 model.compile(loss='mse', 
               optimizer=Adam(learning_rate=0.001))
 
-model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=20)
+model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=100)
 train_predictions = model.predict(X_train).flatten()
 val_predictions = model.predict(X_val).flatten()
 test_predictions = model.predict(X_test).flatten()
@@ -146,7 +146,13 @@ for index in range(1,test_predictions.shape[0]):
    if((y_test[index]>0 and test_predictions[index]>0) or (y_test[index]<0 and test_predictions[index]<0)):
       count = count + 1
       
+count = 0
+for index in range(1,test_predictions.shape[0]):  
+   if((y_test[index]>0 and test_predictions[index]>0) or (y_test[index]<0 and test_predictions[index]<0)):
+      count = count + 1
+      
 print((1-count/test_predictions.shape[0])*100)
+print(test_predictions)
 
 # recursive_predictions = []
 # recursive_dates = np.concatenate([dates_val, dates_test])
