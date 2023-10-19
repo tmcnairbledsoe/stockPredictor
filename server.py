@@ -45,7 +45,6 @@ def str_to_datetime(s):
   year, month, day = int(split[0]), int(split[1]), int(split[2])
   return datetime.datetime(year=year, month=month, day=day)
 
-datetime_object = str_to_datetime('1986-03-19')
 df['Date'] = df['Date'].apply(str_to_datetime)
 df.index = df.pop('Date')
 
@@ -118,6 +117,7 @@ def windowed_df_to_date_X_y(windowed_dataframe):
   return dates, X.astype(np.int32), Y.astype(np.int32)
 
 dates, X, y = windowed_df_to_date_X_y(windowed_df)
+print(y)
 
 q_80 = int(len(dates) * .8)
 q_90 = int(len(dates) * .9)
@@ -126,6 +126,7 @@ dates_train, X_train, y_train = dates[:q_80], X[:q_80], y[:q_80]
 
 dates_val, X_val, y_val = dates[q_80:q_90], X[q_80:q_90], y[q_80:q_90]
 dates_test, X_test, y_test = dates[q_90:], X[q_90:], y[q_90:]
+print(y_test)
 
 model = Sequential([layers.Input((3, 1)),
                     layers.LSTM(7),
