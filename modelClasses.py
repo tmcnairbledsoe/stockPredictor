@@ -29,8 +29,13 @@ class BasicModel(Model):
         self.numOutput = 1
         self.inputs = ['Difference']
         self.outputs = ['Difference']
+        self.inputScalar = MinMaxScaler()
         self.outputScalar = MinMaxScaler()
         df[self.outputs] = self.outputScalar.fit_transform(df[self.outputs])
+        if(self.inputs == ['Difference']):
+            self.inputScalar = self.outputScalar
+        else:
+            df[self.inputs] = self.inputScalar.fit_transform(df[self.inputs.remove('Difference')])
         self.df = df
  
     def build(self):
