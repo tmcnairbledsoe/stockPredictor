@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 def SpyHistory():
-    df = pd.read_csv('C:\\src\\stockPredictor\\SpyHist.csv', index_col=0)
+    df = pd.read_csv('C:\\src\\stockPredictor\\SPYHist.csv', index_col=0)
     df['DateTime'] = pd.to_datetime(df['DateTime'])
     df['date'] = [d.date() for d in df['DateTime']]
     df['time'] = [d.time() for d in df['DateTime']]
@@ -15,13 +15,13 @@ def SpyHistory():
     df = df.dropna()
 
     for currentDate in df.date.unique():
-        if len(df.date.unique()) > len(df.loc[df['date'] == currentDate]):
+        if len(df.time.unique()) > len(df.loc[df['date'] == currentDate]):
             df = df.loc[df['date'] != currentDate]
     
     return df
 
 def QqqHistory():
-    df = pd.read_csv('C:\\src\\stockPredictor\\QqqHist.csv', index_col=0)
+    df = pd.read_csv('C:\\src\\stockPredictor\\QQQHist.csv', index_col=0)
     df['DateTime'] = pd.to_datetime(df['DateTime'])
     df['date'] = [d.date() for d in df['DateTime']]
     df['time'] = [d.time() for d in df['DateTime']]
@@ -32,7 +32,7 @@ def QqqHistory():
     df = df.dropna()
 
     for currentDate in df.date.unique():
-        if len(df.date.unique()) > len(df.loc[df['date'] == currentDate]):
+        if len(df.time.unique()) > len(df.loc[df['date'] == currentDate]):
             df = df.loc[df['date'] != currentDate]
     
     return df
