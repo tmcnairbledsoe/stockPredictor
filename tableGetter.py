@@ -11,8 +11,6 @@ def SpyHistory():
     df['Open'] = df['Open'].astype(float)
     df['Close'] = df['Close'].astype(float)
     df['Volume'] = df['Volume'].astype(int)
-    df['slowsma'] = df['Close'].rolling(21).mean()
-    df['fastsma'] = df['Close'].rolling(9).mean()
     df['Difference'] = df['Close'] - df['Open']
     df = df.dropna()
 
@@ -30,8 +28,6 @@ def QqqHistory():
     df['Open'] = df['Open'].astype(float)
     df['Close'] = df['Close'].astype(float)
     df['Volume'] = df['Volume'].astype(int)
-    df['slowsma'] = df['Close'].rolling(21).mean()
-    df['fastsma'] = df['Close'].rolling(9).mean()
     df['Difference'] = df['Close'] - df['Open']
     df = df.dropna()
 
